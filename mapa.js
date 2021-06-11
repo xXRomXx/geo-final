@@ -1,6 +1,5 @@
-
 var informacion ="<h1>Ubicación actual</h1>"
-var map;
+var map = document.getElementById("map");
 var clima;
 
 var comoquieras;
