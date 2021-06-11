@@ -1,6 +1,6 @@
 body{
     background-color:azure;
-    background-image: url(img/dia/null.jpg);
+    background-image: url("img/null.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
