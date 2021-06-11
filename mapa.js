@@ -8,8 +8,7 @@ var coordenadas = {
 };
 
 var propiedades = {
-    center: coordenadas,
-    zoom: 50
+    center: coordenadas
 };
 
 function iniciaMapa() {
