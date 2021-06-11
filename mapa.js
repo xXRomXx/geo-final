@@ -3,7 +3,6 @@ var map = document.getElementById("map");
 var clima;
 var primeraVez = true;
 
-
 var comoquieras;
 
 var coordenadas = {
@@ -12,7 +11,8 @@ var coordenadas = {
 };
 
 var propiedades = {
-    center: coordenadas
+    center: coordenadas,
+    zoom: 2
 };
 
 function iniciaMapa() {
