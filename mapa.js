@@ -2,6 +2,45 @@
 var informacion ="<h1>Ubicación actual</h1>"
 
 function iniciaMapa() {
+    map = new google.maps.Map(document.getElementById("map"), propiedades);
+
+    var icono = {
+        url: "img/circle.png",
+        scaledSize: new google.maps.Size(50,50),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(0,0)
+    }
+
+    var marker = new google.maps.Marker({
+        position: coordenadas,
+        icon: icono
+    });
+
+    if(navigator.geolocation){
+
+        setInterval( () => {
+            moverPosicion(marker);
+            console.log("Mueve posición");
+        }, 5000);
+    
+    }
+
+    function moverPosicion(marker){
+
+        navigator.geolocation.getCurrentPosition( posicion => {
+            var pos = {
+                lat: posicion.coords.latitude,
+                lng: posicion.coords.longitude
+            }
+
+            marker.setPosition(pos);
+            map.panTo(pos);
+            map.setCenter(pos);
+
+        });
+    }
+
+    /*
     var propiedades = {
         center: {
             lat : 21.106382, lng : -101.649501
@@ -31,5 +70,5 @@ function iniciaMapa() {
             })
         });
     }
-    
+    */
 }

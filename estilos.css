@@ -1,0 +1,12 @@
+body{
+    background-color:azure;
+    background-image: url(img/dia/despejado.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+}
