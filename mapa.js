@@ -1,6 +1,7 @@
 
 var informacion ="<h1>Ubicación actual</h1>"
 var map;
+var clima;
 
 var coordenadas = {
     lat: 21.106382,
@@ -30,10 +31,15 @@ function iniciaMapa() {
 
     if(navigator.geolocation){
 
-        setInterval( () => {
+        setInterval( async () => {
             moverPosicion(marker);
             console.log("Mueve posición");
-        }, 5000);
+            
+            clima = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+ coordenadas.lat +'&lon='+ coordenadas.lng +'&appid=4e942cfe2a4b3162c8fa0b02a533afed');
+            
+            console.log(clima);
+
+        }, 3000);
     
     }
 
