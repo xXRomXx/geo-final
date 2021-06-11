@@ -1,6 +1,6 @@
 body{
     background-color:azure;
-    background-image: url(img/dia/despejado.jpg);
+    background-image: url(img/dia/null.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -8,5 +8,5 @@ body{
 
 #map {
     width: 100%;
-    height: 500px;
+    height: 550px;
 }

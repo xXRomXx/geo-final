@@ -9,10 +9,9 @@ var coordenadas = {
 
 var propiedades = {
     center: coordenadas,
-    zoom: 20
+    zoom: 10
 };
 
-//lat : 21.106382, lng : -101.649501
 function iniciaMapa() {
 
     map = new google.maps.Map(document.getElementById("map"), propiedades);
