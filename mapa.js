@@ -1,6 +1,7 @@
 var informacion ="<h1>Ubicación actual</h1>"
 var map = document.getElementById("map");
 var clima;
+var primeraVez = true;
 
 var comoquieras;
 
@@ -34,14 +35,22 @@ function iniciaMapa() {
 
         setInterval( async () => {
             moverPosicion(marker);
+            if(primeraVez)
+            {
+                await usarApi();
+            }
             
-            clima = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+ coordenadas.lat.toString() +'&lon='+ coordenadas.lng.toString() +'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed');
-            comoquieras = await JSON.stringify(clima);
-            console.log(comoquieras);
 
-        }, 3000);
+        }, 5000);
     
     }
+    
+    usarApi( async () => {
+        clima = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed');
+        comoquieras = await JSON.stringify(clima);
+        console.log(comoquieras);
+        primeraVez = false;
+    })
 
     function moverPosicion(marker){
 
