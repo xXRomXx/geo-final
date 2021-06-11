@@ -44,8 +44,9 @@ function iniciaMapa() {
 
         var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
         clima = await fetch(ruta);
-        console.log(ruta);
-        comoquieras = await JSON.parse(clima);
+        console.log(coordenadas.lat);
+        console.log(coordenadas.lng);
+        comoquieras = await JSON.stringify(clima);
         console.log(comoquieras);
 
         navigator.geolocation.getCurrentPosition( posicion => {
