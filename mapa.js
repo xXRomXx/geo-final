@@ -36,22 +36,17 @@ function iniciaMapa() {
 
         setInterval( async () => {
             moverPosicion(marker);
-            //if(primeraVez)
-            {
-                var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
-                clima = await fetch(ruta);
-                console.log(ruta);
-                comoquieras = await JSON.stringify(clima);
-                console.log(comoquieras);
-                //primeraVez = false;
-            }
-            
-
         }, 5000);
     
     }
 
-    function moverPosicion(marker){
+    async function moverPosicion(marker){
+
+        var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
+        clima = await fetch(ruta);
+        console.log(ruta);
+        comoquieras = await JSON.stringify(clima);
+        console.log(comoquieras);
 
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
