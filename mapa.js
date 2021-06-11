@@ -35,7 +35,7 @@ function iniciaMapa() {
             moverPosicion(marker);
             console.log("Mueve posición");
             
-            clima = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+ coordenadas.lat +'&lon='+ coordenadas.lng +'&appid=4e942cfe2a4b3162c8fa0b02a533afed');
+            clima = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+ coordenadas.lat.toString() +'&lon='+ coordenadas.lng.toString() +'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed');
             
             console.log(clima);
 
