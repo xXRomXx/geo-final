@@ -13,7 +13,8 @@ function iniciaMapa() {
 
     var marker = new google.maps.Marker({
         position: coordenadas,
-        icon: icono
+        icon: icono,
+        map: map
     });
 
     if(navigator.geolocation){
