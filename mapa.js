@@ -17,7 +17,7 @@ function iniciaMapa() {
 
     var icono = {
         url: "./img/circle.png",
-        scaledSize: new google.maps.Size(50,50),
+        scaledSize: new google.maps.Size(35,35),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(0,0)
     }
