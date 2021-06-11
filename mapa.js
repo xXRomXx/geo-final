@@ -9,7 +9,7 @@ var coordenadas = {
 
 var propiedades = {
     center: coordenadas,
-    zoom: 10
+    zoom: 50
 };
 
 function iniciaMapa() {
