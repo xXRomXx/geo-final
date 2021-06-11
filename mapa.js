@@ -5,7 +5,7 @@ function iniciaMapa() {
     map = new google.maps.Map(document.getElementById("map"), propiedades);
 
     var icono = {
-        url: "img/circle.png",
+        src: "img/circle.png",
         scaledSize: new google.maps.Size(50,50),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(0,0)
