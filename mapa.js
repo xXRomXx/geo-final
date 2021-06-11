@@ -3,6 +3,7 @@ var map = document.getElementById("map");
 var clima;
 var primeraVez = true;
 
+
 var comoquieras;
 
 var coordenadas = {
@@ -37,7 +38,9 @@ function iniciaMapa() {
             moverPosicion(marker);
             //if(primeraVez)
             {
-                clima = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed');
+                var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
+                clima = await fetch(ruta);
+                console.log(ruta);
                 comoquieras = await JSON.stringify(clima);
                 console.log(comoquieras);
                 //primeraVez = false;
