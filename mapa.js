@@ -2,13 +2,17 @@
 var informacion ="<h1>Ubicación actual</h1>"
 var map;
 
-var propiedades = {
-    center: {
-        lat : 21.106382, lng : -101.649501
-    },
-    zoom: 14
+var coordenadas = {
+    lat: 21.106382,
+    lng: -101.649501
 };
 
+var propiedades = {
+    center: coordenadas,
+    zoom: 20
+};
+
+//lat : 21.106382, lng : -101.649501
 function iniciaMapa() {
 
     map = new google.maps.Map(document.getElementById("map"), propiedades);
