@@ -378,15 +378,14 @@ function iniciaMapa() {
         if (clima == "Tornado")
         console.log("Tornado");
 
-
-        txtLatitud.innerText = "Latitud: " + posicion.coords.latitude
-        txtLongitud.innerText = "Longitud: " + posicion.coords.longitude
-
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
                 lat: posicion.coords.latitude,
                 lng: posicion.coords.longitude
             }
+
+            txtLatitud.innerText = "Latitud: " + coords.latitude
+            txtLongitud.innerText = "Longitud: " + posicion.coords.longitude
 
             marker.setPosition(pos);
             map.panTo(pos);
