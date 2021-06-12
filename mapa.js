@@ -3,6 +3,7 @@ var map = document.getElementById("map");
 var fondo = document.getElementById("body");
 var txtLatitud = document.getElementById("txtLatitud");
 var txtLongitud = document.getElementById("txtLongitud");
+var txtCoordenadas = document.getElementById("coordenadas");
 var respuesta, clima;
 
 var luz = true;
@@ -393,7 +394,7 @@ function iniciaMapa() {
         //Tornado
         if (clima == "Tornado")
         console.log("Tornado");
-
+        txtCoordenadas.innerText = clima;
     }
 
 
