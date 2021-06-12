@@ -305,6 +305,22 @@ function iniciaMapa() {
 
     async function moverPosicion(marker){
 
+        navigator.geolocation.getCurrentPosition( posicion => {
+            var pos = {
+                lat: posicion.coords.latitude,
+                lng: posicion.coords.longitude
+            }
+
+            coordenadas = pos;
+            marker.setPosition(pos);
+            map.panTo(pos);
+            map.setCenter(pos);
+
+        });
+
+        txtLatitud.innerText = "Latitud: " + coordenadas.lat
+        txtLongitud.innerText = "Longitud: " + coordenadas.lng
+
         var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
         respuesta = await fetch(ruta);
         tiempo = await respuesta.json();
@@ -378,20 +394,6 @@ function iniciaMapa() {
         if (clima == "Tornado")
         console.log("Tornado");
 
-        navigator.geolocation.getCurrentPosition( posicion => {
-            var pos = {
-                lat: posicion.coords.latitude,
-                lng: posicion.coords.longitude
-            }
-
-            txtLatitud.innerText = "Latitud: " + coords.latitude
-            txtLongitud.innerText = "Longitud: " + posicion.coords.longitude
-
-            marker.setPosition(pos);
-            map.panTo(pos);
-            map.setCenter(pos);
-
-        });
     }
 
 
