@@ -1,5 +1,7 @@
 var informacion ="<h1>Ubicación actual</h1>"
 var map = document.getElementById("map");
+var fondo = document.getElementById("body");
+var respuesta;
 var clima;
 var tiempo;
 var primeraVez = true;
@@ -42,10 +44,77 @@ function iniciaMapa() {
     async function moverPosicion(marker){
 
         var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
-        clima = await fetch(ruta);
+        respuesta = await fetch(ruta);
+        clima = tiempo.current.weather[0].main;
+        console.log(clima);
+        //body.style.backgroundImage = "sisisi"
+
+        //Nublado
+        if (clima == "Clouds"){
+            body.style.backgroundImage = "url('img/dia/muy-nublado.gif')";
+            console.log("Nublado");
+        }
+        console.log("Nublado");
+
+        //Despejado
+        if (clima == "Clear")
+        console.log("Cielo despejado");
+
+        //Tormenta eléctrica
+        if (clima == "Thunderstorm")
+        console.log("Tormenta eléctrica");
+
+        //Llovizna
+        if (clima == "Drizzle")
+        console.log("Llovizna");
+
+        //Lluvioso
+        if (clima == "Rain")
+        console.log("Lluvioso");
+
+        //Nieve
+        if (clima == "Snow")
+        console.log("Nieve");
+
+        //Neblina
+        if (clima == "Mist")
+        console.log("Neblina");
+
+        //Humo en el ambiente
+        if (clima == "Smoke")
+        console.log("Humo en el ambiente");
+
+        //Polvo en el ambiente
+        if (clima == "Dust")
+        console.log("Neblina");
+        
+        //Calina(partículas de polvo suspendidas en el aire)
+        if (clima == "Haze")
+        console.log("Calina");
+
+        //Niebla
+        if (clima == "Fog")
+        console.log("Niebla");
+
+        //Tormenta de arena
+        if (clima == "Sand")
+        console.log("Tormenta de arena");
+
+        //Lluvia de ceniza
+        if (clima == "Ash")
+        console.log("Lluvia de ceniza");
+
+        //Tormenta
+        if (clima == "Squall")
+        console.log("Tormenta");
+
+        //Tornado
+        if (clima == "Tornado")
+        console.log("Tornado");
+
+
 
         tiempo = await clima.json();
-        console.log(tiempo.current.weather[0].main);
 
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
