@@ -278,7 +278,7 @@ function iniciaMapa() {
 
         luz = false;
     }
-    else{
+    else {
         luz = true;
     }
 
