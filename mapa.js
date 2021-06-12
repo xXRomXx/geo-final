@@ -26,7 +26,7 @@ function iniciaMapa() {
     var fecha = new Date()
 
     console.log(fecha.getHours() + " horas");
-
+/*
     if(fecha.getHours() >=20 || fecha.getHours() < 8){
         var styledMapTypeOscuro = new google.maps.StyledMapType(
             [
@@ -281,7 +281,7 @@ function iniciaMapa() {
     else {
         luz = true;
     }
-
+*/
     var icono = {
         url: "./img/circle.png",
         scaledSize: new google.maps.Size(35,35),
