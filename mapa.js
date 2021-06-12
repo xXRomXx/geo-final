@@ -3,7 +3,6 @@ var map = document.getElementById("map");
 var fondo = document.getElementById("body");
 var respuesta;
 var clima;
-var tiempo;
 var primeraVez = true;
 
 var coordenadas = {
@@ -45,16 +44,16 @@ function iniciaMapa() {
 
         var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
         respuesta = await fetch(ruta);
-        clima = tiempo.current.weather[0].main;
-        console.log(clima);
+        tiempo = await respuesta.json();
+        clima = await tiempo.current.weather[0].main;
+        console.log(clima)
         //body.style.backgroundImage = "sisisi"
 
         //Nublado
         if (clima == "Clouds"){
-            body.style.backgroundImage = "url('img/dia/muy-nublado.gif')";
+            body.style.backgroundImage = "url('img/dia/nublado.jpg')";
             console.log("Nublado");
         }
-        console.log("Nublado");
 
         //Despejado
         if (clima == "Clear")
@@ -114,7 +113,6 @@ function iniciaMapa() {
 
 
 
-        tiempo = await clima.json();
 
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
