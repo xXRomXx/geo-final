@@ -1,9 +1,8 @@
 var informacion ="<h1>Ubicación actual</h1>"
 var map = document.getElementById("map");
 var clima;
+var tiempo;
 var primeraVez = true;
-
-var comoquieras;
 
 var coordenadas = {
     lat: 21.106382,
@@ -44,8 +43,9 @@ function iniciaMapa() {
 
         var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
         clima = await fetch(ruta);
-        comoquieras = await clima.json();
-        console.log(comoquieras);
+
+        tiempo = await clima.json();
+        console.log(tiempo.current.weather[0].main);
 
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
