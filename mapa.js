@@ -150,7 +150,7 @@ function iniciaMapa() {
                     "elementType": "geometry",
                     "stylers": [
                     {
-                        "color": "#ff40ff"
+                        "color": "#712B79"
                     }
                     ]
                 },
