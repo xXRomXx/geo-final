@@ -296,6 +296,10 @@ function iniciaMapa() {
         map: map
     });
 
+    const infowindow = new google.maps.InfoWindow({
+        content : informacion
+    })
+
     marker.addListener("click", () => {
         infowindow.open(map, marker)
     })
@@ -304,9 +308,6 @@ function iniciaMapa() {
 
         setInterval( async () => {
             moverPosicion(marker);
-            const infowindow = new google.maps.InfoWindow({
-                content : informacion
-            }) 
         }, 5000);
 
 
@@ -314,7 +315,15 @@ function iniciaMapa() {
 
     async function moverPosicion(marker){
 
+        infowindow = new google.maps.InfoWindow({
+            content : informacion
+        })
+        
         informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h3";
+
+        infowindow = new google.maps.InfoWindow({
+            content : informacion
+        })
 
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
