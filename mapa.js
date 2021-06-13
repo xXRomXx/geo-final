@@ -318,9 +318,9 @@ function iniciaMapa() {
         infowindow = new google.maps.InfoWindow({
             content : informacion
         })
-        
-        informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h3";
 
+        informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h3";
+        console.log(informacion)
         infowindow = new google.maps.InfoWindow({
             content : informacion
         })
