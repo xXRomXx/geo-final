@@ -17,7 +17,7 @@ var coordenadas = {
 
 var propiedades = {
     center: coordenadas,
-    zoom: 30
+    zoom: 14
 };
 
 function iniciaMapa() {
@@ -296,15 +296,25 @@ function iniciaMapa() {
         map: map
     });
 
+    marker.addListener("click", () => {
+        infowindow.open(map, marker)
+    })
+
     if(navigator.geolocation){
 
         setInterval( async () => {
             moverPosicion(marker);
+            const infowindow = new google.maps.InfoWindow({
+                content : informacion
+            }) 
         }, 5000);
-    
+
+
     }
 
     async function moverPosicion(marker){
+
+        informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h3";
 
         navigator.geolocation.getCurrentPosition( posicion => {
             var pos = {
@@ -395,6 +405,7 @@ function iniciaMapa() {
         if (clima == "Tornado")
         console.log("Tornado");
         txtCoordenadas.innerText = clima;
+        
     }
 
 
