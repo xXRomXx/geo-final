@@ -296,7 +296,7 @@ function iniciaMapa() {
         map: map
     });
 
-    const infowindow = new google.maps.InfoWindow({
+    var infowindow = new google.maps.InfoWindow({
         content : informacion
     })
 
