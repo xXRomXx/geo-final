@@ -341,7 +341,7 @@ function iniciaMapa() {
         txtLatitud.innerText = "Latitud: " + coordenadas.lat
         txtLongitud.innerText = "Longitud: " + coordenadas.lng
 
-        var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=4e942cfe2a4b3162c8fa0b02a533afed';
+        var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=6903d2ef4a409a7b1f00d62c46ff66a7';
         respuesta = await fetch(ruta);
         tiempo = await respuesta.json();
         clima = await tiempo.current.weather[0].main;
