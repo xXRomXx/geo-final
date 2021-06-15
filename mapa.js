@@ -5,10 +5,9 @@ var txtLatitud = document.getElementById("txtLatitud");
 var txtLongitud = document.getElementById("txtLongitud");
 var txtCoordenadas = document.getElementById("coordenadas");
 var respuesta, clima;
+var llamadasAPI = 0;
 
 var luz = true;
-
-var primeraVez = true;
 
 var coordenadas = {
     lat: 21.106382,
@@ -314,6 +313,9 @@ function iniciaMapa() {
     }
 
     async function moverPosicion(marker){
+
+        llamadasAPI++;
+        console.log("LLAMADAS: " + llamadasAPI);
 
         infowindow = new google.maps.InfoWindow({
             content : informacion
