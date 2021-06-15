@@ -321,10 +321,11 @@ function iniciaMapa() {
             content : informacion
         })
 
-        informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h3";
-        console.log(informacion)
+        informacion = "<h5>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h5";
+
         infowindow = new google.maps.InfoWindow({
-            content : informacion
+            content : informacion,
+            backgroundColor: 'rgb(75,124,152)',
         })
 
         navigator.geolocation.getCurrentPosition( posicion => {
