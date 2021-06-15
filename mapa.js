@@ -346,6 +346,17 @@ function iniciaMapa() {
         tiempo = await respuesta.json();
         clima = await tiempo.current.weather[0].main;
         console.log(clima)
+
+        //Despejado
+        if (clima == "Clear"){
+            if(luz){
+                body.style.backgroundImage = "url('img/dia/despejado.jpg')";
+            }
+            else{
+                body.style.backgroundImage = "url('img/noche/despejado.gif')";
+            }
+            console.log("Cielo despejado");
+        }
         
         //Nublado
         if (clima == "Clouds"){
@@ -358,63 +369,86 @@ function iniciaMapa() {
             console.log("Nublado");
         }
 
-        //Despejado
-        if (clima == "Clear")
-        console.log("Cielo despejado");
-
         //Tormenta eléctrica
-        if (clima == "Thunderstorm")
-        console.log("Tormenta eléctrica");
+        if (clima == "Thunderstorm"){
+            body.style.backgroundImage = "url('img/tormenta.jpg')";
+            console.log("Tormenta eléctrica");
+        }
 
-        //Llovizna
-        if (clima == "Drizzle")
-        console.log("Llovizna");
-
-        //Lluvioso
-        if (clima == "Rain")
-        console.log("Lluvioso");
+        //Llovizna o Lluvia
+        if (clima == "Drizzle" || clima == "Rain"){
+            body.style.backgroundImage = "url('img/lluvia.gif')";
+            console.log("Lluvioso");
+        }
 
         //Nieve
-        if (clima == "Snow")
-        console.log("Nieve");
+        if (clima == "Snow"){
+            if(luz){
+                body.style.backgroundImage = "url('img/dia/nieve.gif')";
+            }
+            else{
+                body.style.backgroundImage = "url('img/noche/nieve.gif')";
+            }
+            console.log("Nieve");
+        }
 
-        //Neblina
-        if (clima == "Mist")
-        console.log("Neblina");
+        //Neblina o polvo en el ambiente o calina(partículas de polvo suspendidas en el aire)
+        if (clima == "Mist" || clima == "Dust" || clima == "Haze"){
+            if(luz){
+                body.style.backgroundImage = "url('img/dia/neblina.gif')";
+            }
+            else{
+                body.style.backgroundImage = "url('img/noche/neblina.gif')";
+            }
+            console.log("Neblina");
+        }
 
         //Humo en el ambiente
-        if (clima == "Smoke")
-        console.log("Humo en el ambiente");
-
-        //Polvo en el ambiente
-        if (clima == "Dust")
-        console.log("Neblina");
+        if (clima == "Smoke"){
+            body.style.backgroundImage = "url('img/humo.gif')";
+            console.log("Humo en el ambiente");
+        }
         
-        //Calina(partículas de polvo suspendidas en el aire)
-        if (clima == "Haze")
-        console.log("Calina");
-
         //Niebla
-        if (clima == "Fog")
-        console.log("Niebla");
+        if (clima == "Fog"){
+            if(luz){
+                body.style.backgroundImage = "url('img/dia/niebla.jpg')";
+            }
+            else{
+                body.style.backgroundImage = "url('img/noche/niebla.jpg')";
+            }
+            console.log("Niebla");
+        }
 
         //Tormenta de arena
-        if (clima == "Sand")
-        console.log("Tormenta de arena");
+        if (clima == "Sand"){
+            body.style.backgroundImage = "url('img/arena.gif')";
+            console.log("Tormenta de arena");
+        }
 
         //Lluvia de ceniza
-        if (clima == "Ash")
-        console.log("Lluvia de ceniza");
+        if (clima == "Ash"){
+            body.style.backgroundImage = "url('img/ash.jpg')";
+            console.log("Lluvia de ceniza");
+        }
 
         //Tormenta
-        if (clima == "Squall")
-        console.log("Tormenta");
+        if (clima == "Squall"){
+            if(luz){
+                body.style.backgroundImage = "url('img/dia/chubasco.jpg')";
+            }
+            else{
+                body.style.backgroundImage = "url('img/tormenta.jpg')";
+            }
+            console.log("Tormenta");
+        }
 
         //Tornado
-        if (clima == "Tornado")
-        console.log("Tornado");
+        if (clima == "Tornado"){
+            body.style.backgroundImage = "url('img/tornado.gif')";
+            console.log("Tornado");
+        }
         txtCoordenadas.innerText = clima;
-        
     }
 
 
