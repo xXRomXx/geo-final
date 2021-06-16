@@ -3,12 +3,12 @@ firebase.auth().onAuthStateChanged(function (user) {
       // User is signed in.
   
       var user = firebase.auth().currentUser;
-      console.log("jalo")
+      window.alert("Inició sesión.")
   
     } else {
       // No user is signed in.
   
-      console.log("nimodo")
+      console.log("Credenciales inválidas.")
   
     }
   });
