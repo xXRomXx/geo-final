@@ -4,7 +4,8 @@ var fondo = document.getElementById("body");
 var txtLatitud = document.getElementById("txtLatitud");
 var txtLongitud = document.getElementById("txtLongitud");
 var txtCoordenadas = document.getElementById("coordenadas");
-var respuesta, clima;
+var respuesta, clima, tiempo;
+var visualizarClima;
 var llamadasAPI = 0;
 
 var luz = true;
@@ -358,7 +359,7 @@ function iniciaMapa() {
             else{
                 body.style.backgroundImage = "url('img/noche/despejado.gif')";
             }
-            console.log("Cielo despejado");
+            visualizarClima = "Cielo despejado";
         }
         
         //Nublado
@@ -369,19 +370,19 @@ function iniciaMapa() {
             else{
                 body.style.backgroundImage = "url('img/noche/nublado.gif')";
             }
-            console.log("Nublado");
+            visualizarClima = "Nublado";
         }
 
         //Tormenta eléctrica
         if (clima == "Thunderstorm"){
             body.style.backgroundImage = "url('img/tormenta.jpg')";
-            console.log("Tormenta eléctrica");
+            visualizarClima = "Tormenta eléctrica";
         }
 
         //Llovizna o Lluvia
         if (clima == "Drizzle" || clima == "Rain"){
             body.style.backgroundImage = "url('img/lluvia.gif')";
-            console.log("Lluvioso");
+            visualizarClima = "Lluvioso";
         }
 
         //Nieve
@@ -392,7 +393,7 @@ function iniciaMapa() {
             else{
                 body.style.backgroundImage = "url('img/noche/nieve.gif')";
             }
-            console.log("Nieve");
+            visualizarClima = "Nieve";
         }
 
         //Neblina o polvo en el ambiente o calina(partículas de polvo suspendidas en el aire)
@@ -403,13 +404,13 @@ function iniciaMapa() {
             else{
                 body.style.backgroundImage = "url('img/noche/neblina.gif')";
             }
-            console.log("Neblina");
+            visualizarClima = "Neblina";
         }
 
         //Humo en el ambiente
         if (clima == "Smoke"){
             body.style.backgroundImage = "url('img/humo.gif')";
-            console.log("Humo en el ambiente");
+            visualizarClima = "Humo en el ambiente";
         }
         
         //Niebla
@@ -420,19 +421,19 @@ function iniciaMapa() {
             else{
                 body.style.backgroundImage = "url('img/noche/niebla.jpg')";
             }
-            console.log("Niebla");
+            visualizarClima = "Niebla";
         }
 
         //Tormenta de arena
         if (clima == "Sand"){
             body.style.backgroundImage = "url('img/arena.gif')";
-            console.log("Tormenta de arena");
+            visualizarClima = "Tormenta de arena";
         }
 
         //Lluvia de ceniza
         if (clima == "Ash"){
             body.style.backgroundImage = "url('img/ash.jpg')";
-            console.log("Lluvia de ceniza");
+            visualizarClima = "Lluvia de ceniza";
         }
 
         //Tormenta
@@ -443,15 +444,15 @@ function iniciaMapa() {
             else{
                 body.style.backgroundImage = "url('img/tormenta.jpg')";
             }
-            console.log("Tormenta");
+            visualizarClima = "Tormenta";
         }
 
         //Tornado
         if (clima == "Tornado"){
             body.style.backgroundImage = "url('img/tornado.gif')";
-            console.log("Tornado");
+            visualizarClima = "Tornado";
         }
-        txtCoordenadas.innerText = clima;
+        txtCoordenadas.innerText = visualizarClima;
     }
 
 
