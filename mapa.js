@@ -1,4 +1,4 @@
-var informacion ="<h1>CLIMA</h1>"
+var informacion ="<h2>CLIMA</h2>"
 var map = document.getElementById("map");
 var fondo = document.getElementById("body");
 var txtLatitud = document.getElementById("txtLatitud");
@@ -7,6 +7,9 @@ var txtCoordenadas = document.getElementById("coordenadas");
 var respuesta, clima, tiempo;
 var visualizarClima;
 var llamadasAPI = 0;
+var primeraVez = true;
+var sesionIniciada = false;
+var fotoGuardada = "url('img/null.jpg')";
 
 var luz = true;
 
@@ -19,6 +22,18 @@ var propiedades = {
     center: coordenadas,
     zoom: 14
 };
+
+function iniciarSesion(variable){
+    sesionIniciada = variable
+    if(!sesionIniciada)
+    {
+        body.style.backgroundImage = "url('img/null.jpg')";
+    }
+    else
+    {
+        body.style.backgroundImage = fotoGuardada;
+    }
+}
 
 function iniciaMapa() {
 
@@ -308,153 +323,161 @@ function iniciaMapa() {
 
         setInterval( async () => {
             moverPosicion(marker);
-        }, 20000);
+        }, 10000);
 
 
     }
 
     async function moverPosicion(marker){
 
-        llamadasAPI++;
-        console.log("LLAMADAS: " + llamadasAPI);
-
-        infowindow = new google.maps.InfoWindow({
-            content : informacion
-        })
-
-        //informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h5";
-
-        infowindow = new google.maps.InfoWindow({
-            content : informacion,
-            backgroundColor: 'rgb(75,124,152)',
-        })
-
-        navigator.geolocation.getCurrentPosition( posicion => {
-            var pos = {
-                lat: posicion.coords.latitude,
-                lng: posicion.coords.longitude
+        if(sesionIniciada)
+        {
+            llamadasAPI++;
+            console.log("LLAMADAS LOCALES A API: " + llamadasAPI);
+    
+            infowindow = new google.maps.InfoWindow({
+                content : informacion
+            })
+    
+            //informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h5";
+    
+            infowindow = new google.maps.InfoWindow({
+                content : informacion,
+                backgroundColor: 'rgb(75,124,152)',
+            })
+    
+            navigator.geolocation.getCurrentPosition( posicion => {
+                var pos = {
+                    lat: posicion.coords.latitude,
+                    lng: posicion.coords.longitude
+                }
+    
+                coordenadas = pos;
+                marker.setPosition(pos);
+                map.panTo(pos);
+                map.setCenter(pos);
+    
+            });
+    
+            txtLatitud.innerText = "Latitud: " + coordenadas.lat
+            txtLongitud.innerText = "Longitud: " + coordenadas.lng
+    
+            var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=c9346d5f0a34b62820ec7edf808ba721';
+            respuesta = await fetch(ruta);
+            tiempo = await respuesta.json();
+            clima = await tiempo.current.weather[0].main;
+            console.log(clima)
+    
+            //Despejado
+            if (clima == "Clear"){
+                if(luz){
+                    body.style.backgroundImage = "url('img/dia/despejado.jpg')";
+                }
+                else{
+                    body.style.backgroundImage = "url('img/noche/despejado.gif')";
+                }
+                visualizarClima = "Cielo despejado";
             }
-
-            coordenadas = pos;
-            marker.setPosition(pos);
-            map.panTo(pos);
-            map.setCenter(pos);
-
-        });
-
-        txtLatitud.innerText = "Latitud: " + coordenadas.lat
-        txtLongitud.innerText = "Longitud: " + coordenadas.lng
-
-        var ruta = 'https://api.openweathermap.org/data/2.5/onecall?lat='+coordenadas.lat+'&lon='+coordenadas.lng+'&exclude=hourly,daily&appid=c9346d5f0a34b62820ec7edf808ba721';
-        respuesta = await fetch(ruta);
-        tiempo = await respuesta.json();
-        clima = await tiempo.current.weather[0].main;
-        console.log(clima)
-
-        //Despejado
-        if (clima == "Clear"){
-            if(luz){
-                body.style.backgroundImage = "url('img/dia/despejado.jpg')";
+            
+            //Nublado
+            if (clima == "Clouds"){
+                if(luz){
+                    body.style.backgroundImage = "url('img/dia/nublado.jpg')";
+                }
+                else{
+                    body.style.backgroundImage = "url('img/noche/nublado.gif')";
+                }
+                visualizarClima = "Nublado";
             }
-            else{
-                body.style.backgroundImage = "url('img/noche/despejado.gif')";
-            }
-            visualizarClima = "Cielo despejado";
-        }
-        
-        //Nublado
-        if (clima == "Clouds"){
-            if(luz){
-                body.style.backgroundImage = "url('img/dia/nublado.jpg')";
-            }
-            else{
-                body.style.backgroundImage = "url('img/noche/nublado.gif')";
-            }
-            visualizarClima = "Nublado";
-        }
-
-        //Tormenta eléctrica
-        if (clima == "Thunderstorm"){
-            body.style.backgroundImage = "url('img/tormenta.jpg')";
-            visualizarClima = "Tormenta eléctrica";
-        }
-
-        //Llovizna o Lluvia
-        if (clima == "Drizzle" || clima == "Rain"){
-            body.style.backgroundImage = "url('img/lluvia.gif')";
-            visualizarClima = "Lluvioso";
-        }
-
-        //Nieve
-        if (clima == "Snow"){
-            if(luz){
-                body.style.backgroundImage = "url('img/dia/nieve.gif')";
-            }
-            else{
-                body.style.backgroundImage = "url('img/noche/nieve.gif')";
-            }
-            visualizarClima = "Nieve";
-        }
-
-        //Neblina o polvo en el ambiente o calina(partículas de polvo suspendidas en el aire)
-        if (clima == "Mist" || clima == "Dust" || clima == "Haze"){
-            if(luz){
-                body.style.backgroundImage = "url('img/dia/neblina.gif')";
-            }
-            else{
-                body.style.backgroundImage = "url('img/noche/neblina.gif')";
-            }
-            visualizarClima = "Neblina";
-        }
-
-        //Humo en el ambiente
-        if (clima == "Smoke"){
-            body.style.backgroundImage = "url('img/humo.gif')";
-            visualizarClima = "Humo en el ambiente";
-        }
-        
-        //Niebla
-        if (clima == "Fog"){
-            if(luz){
-                body.style.backgroundImage = "url('img/dia/niebla.jpg')";
-            }
-            else{
-                body.style.backgroundImage = "url('img/noche/niebla.jpg')";
-            }
-            visualizarClima = "Niebla";
-        }
-
-        //Tormenta de arena
-        if (clima == "Sand"){
-            body.style.backgroundImage = "url('img/arena.gif')";
-            visualizarClima = "Tormenta de arena";
-        }
-
-        //Lluvia de ceniza
-        if (clima == "Ash"){
-            body.style.backgroundImage = "url('img/ash.jpg')";
-            visualizarClima = "Lluvia de ceniza";
-        }
-
-        //Tormenta
-        if (clima == "Squall"){
-            if(luz){
-                body.style.backgroundImage = "url('img/dia/chubasco.jpg')";
-            }
-            else{
+    
+            //Tormenta eléctrica
+            if (clima == "Thunderstorm"){
                 body.style.backgroundImage = "url('img/tormenta.jpg')";
+                visualizarClima = "Tormenta eléctrica";
             }
-            visualizarClima = "Tormenta";
+    
+            //Llovizna o Lluvia
+            if (clima == "Drizzle" || clima == "Rain"){
+                body.style.backgroundImage = "url('img/lluvia.gif')";
+                visualizarClima = "Lluvioso";
+            }
+    
+            //Nieve
+            if (clima == "Snow"){
+                if(luz){
+                    body.style.backgroundImage = "url('img/dia/nieve.gif')";
+                }
+                else{
+                    body.style.backgroundImage = "url('img/noche/nieve.gif')";
+                }
+                visualizarClima = "Nieve";
+            }
+    
+            //Neblina o polvo en el ambiente o calina(partículas de polvo suspendidas en el aire)
+            if (clima == "Mist" || clima == "Dust" || clima == "Haze"){
+                if(luz){
+                    body.style.backgroundImage = "url('img/dia/neblina.gif')";
+                }
+                else{
+                    body.style.backgroundImage = "url('img/noche/neblina.gif')";
+                }
+                visualizarClima = "Neblina";
+            }
+    
+            //Humo en el ambiente
+            if (clima == "Smoke"){
+                body.style.backgroundImage = "url('img/humo.gif')";
+                visualizarClima = "Humo en el ambiente";
+            }
+            
+            //Niebla
+            if (clima == "Fog"){
+                if(luz){
+                    body.style.backgroundImage = "url('img/dia/niebla.jpg')";
+                }
+                else{
+                    body.style.backgroundImage = "url('img/noche/niebla.jpg')";
+                }
+                visualizarClima = "Niebla";
+            }
+    
+            //Tormenta de arena
+            if (clima == "Sand"){
+                body.style.backgroundImage = "url('img/arena.gif')";
+                visualizarClima = "Tormenta de arena";
+            }
+    
+            //Lluvia de ceniza
+            if (clima == "Ash"){
+                body.style.backgroundImage = "url('img/ash.jpg')";
+                visualizarClima = "Lluvia de ceniza";
+            }
+    
+            //Tormenta
+            if (clima == "Squall"){
+                if(luz){
+                    body.style.backgroundImage = "url('img/dia/chubasco.jpg')";
+                }
+                else{
+                    body.style.backgroundImage = "url('img/tormenta.jpg')";
+                }
+                visualizarClima = "Tormenta";
+            }
+    
+            //Tornado
+            if (clima == "Tornado"){
+                body.style.backgroundImage = "url('img/tornado.gif')";
+                visualizarClima = "Tornado";
+            }
+            informacion = "<h2>"+visualizarClima+"</h2>";
+    
+            if(primeraVez){
+                guardarDatos(visualizarClima);
+                primeraVez = false;
+            }
+            fotoGuardada = body.style.backgroundImage;
         }
 
-        //Tornado
-        if (clima == "Tornado"){
-            body.style.backgroundImage = "url('img/tornado.gif')";
-            visualizarClima = "Tornado";
-        }
-        informacion = visualizarClima;
     }
-
-
 
 }

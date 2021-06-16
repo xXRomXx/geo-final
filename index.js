@@ -7,23 +7,16 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("Logeado").style.display = "block";
       document.getElementById("noLogeado").style.display = "none";
       console.log("abierto")
-  
+      iniciarSesion(true)
+
     } else {
       // No user is signed in.
   
       document.getElementById("mapa").style.display = "none";
       document.getElementById("Logeado").style.display = "none";
       document.getElementById("noLogeado").style.display = "block";
-      
-  
-    }
-  });
+      iniciarSesion(false)
 
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-    } else {
-      // No user is signed in.
     }
   });
 
@@ -37,7 +30,7 @@ function login() {
       var errorCode = error.code;
       var errorMessage = error.message;
   
-      window.alert("Error : " + errorMessage);
+      window.alert("Credenciales inválidas.");
   
       // ...
     });
@@ -48,3 +41,16 @@ function login() {
     firebase.auth().signOut();
     console.log("cerrado")
   }
+
+  function guardarDatos(clima){
+    db.collection("api").add({
+        veces: clima
+    })
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+  }
+  
