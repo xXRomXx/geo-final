@@ -1,4 +1,4 @@
-var informacion ="<h1>Clima</h1>"
+var informacion ="<h1>CLIMA</h1>"
 var map = document.getElementById("map");
 var fondo = document.getElementById("body");
 var txtLatitud = document.getElementById("txtLatitud");
