@@ -1,4 +1,4 @@
-var informacion ="<h1>Ubicación actual</h1>"
+var informacion ="<h1>Clima</h1>"
 var map = document.getElementById("map");
 var fondo = document.getElementById("body");
 var txtLatitud = document.getElementById("txtLatitud");
@@ -322,7 +322,7 @@ function iniciaMapa() {
             content : informacion
         })
 
-        informacion = "<h5>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h5";
+        //informacion = "<h3>Latitud: " + coordenadas.lat + "\nLongitud: " + coordenadas.lng + "</h5";
 
         infowindow = new google.maps.InfoWindow({
             content : informacion,
@@ -452,7 +452,7 @@ function iniciaMapa() {
             body.style.backgroundImage = "url('img/tornado.gif')";
             visualizarClima = "Tornado";
         }
-        txtCoordenadas.innerText = visualizarClima;
+        informacion = visualizarClima;
     }
 
 
