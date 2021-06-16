@@ -3,18 +3,22 @@ firebase.auth().onAuthStateChanged(function (user) {
       // User is signed in.
   
       //var user = firebase.auth().currentUser;
-      document.getElementById("mapa").style.display = block;
+      document.getElementById("mapa").style.display = "block";
+      document.getElementById("Logeado").style.display = "block";
+      document.getElementById("noLogeado").style.display = "none";
       console.log("abierto")
   
     } else {
       // No user is signed in.
   
-      document.getElementById("mapa").style.display = none;
+      document.getElementById("mapa").style.display = "none";
+      document.getElementById("Logeado").style.display = "none";
+      document.getElementById("noLogeado").style.display = "block";
       
   
     }
   });
-  
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
