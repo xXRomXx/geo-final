@@ -52,7 +52,7 @@ function login() {
         console.log("Document written with ID: ", docRef.id);
     })
     .catch((error) => {
-        console.error("Error adding document: ", error);
+        console.error("Error añadiendo el clima a Firebase: ", error);
     });
   }
   

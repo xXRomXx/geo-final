@@ -494,16 +494,14 @@ function iniciaMapa() {
             if(primeraVez){
                 datosClimaticos.clima = visualizarClima;
                 datosClimaticos.temperatura = temp;
-                //calculoFecha = new Date(tiempo.current.dt * 1000).format('h:i')
+                
                 calculoFecha = new Date(tiempo.current.dt * 1000);
                 minutos = calculoFecha.getMinutes();
                 minutos = minutos < 10 ? '0' + minutos : minutos
-                //minutos = calculoFecha.getMinutes < 10 ? '0' + calculoFecha.getMinutes() : calculoFecha.getMinutes()
+                
                 datosClimaticos.hora = calculoFecha.getHours()+":"+minutos
-                //datosClimaticos.hora = calculoFecha;
+                
                 console.log(datosClimaticos);
-                console.log("S/Convertir: " + minutos);
-                console.log("Convertidos: " + minutos);
                 guardarDatos(datosClimaticos);
                 primeraVez = false;
             }
