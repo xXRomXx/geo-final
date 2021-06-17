@@ -15,23 +15,34 @@
     
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid" id="Logeado" style="align-content: center;">
+            
 
-
-            <div class="col-sm-4">
-                <p class="text-info bg-dark fw-bold lh-1" id ="coordenadas">Clima</p>
-            </div>
-
-            <div class="col-sm-4">
-                <p class="text-light lh-1" id ="txtLatitud">Latitud: </p>
-                <p class="text-light lh-1" id ="txtLongitud">Longitud: </p>
-            </div>
-
-
-            <div class="col-sm-4" style="align-content: center; padding-top: 10px; margin-bottom: 25px;">
-                <div class="row">
-                    <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
+            <div class ="row align-items-center">
+                <div class="col-sm-6">
+                    <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
                 </div>
             </div>
+            
+            
+            <div class ="row align-items-center">
+                <div class="col-sm-6">
+                    <p class="text-light lh-1" id ="txtTemperatura"></p>
+                    <p class="text-light lh-1" id ="txtHumedad"></p>
+                    <p class="text-light lh-1" id ="txtPrecipitacion"></p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-light lh-1" id ="txtLatitud"></p>
+                    <p class="text-light lh-1" id ="txtLongitud"></p>
+                    <p class="text-light lh-1" id ="txtTimezone"></p>
+                </div>
+            
+                <div class="col-md-11" style="align-content: center; padding-top: 10px; margin-bottom: 25px;">
+                    <div class="row">
+                        <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>
@@ -44,7 +55,7 @@
                     <input id="txtUsuario" class="form-control me-2" style="margin-bottom: 10px;" type="text" placeholder="Usuario" aria-label="Search">
                     <input id="txtPass" class="form-control me-2" type="password" placeholder="Contraseña" aria-label="Search">
                 </div>
-                <div class="col-sm-6" style="align-content: center; padding-top: 10px; margin-bottom: 25px;">
+                <div class="col-sm-6" style="align-content: center; padding-top: 24px; margin-bottom: 25px;">
                     <button class="btn btn-outline-success" onclick="login()">Iniciar Sesión</button>
                 </div>
                 

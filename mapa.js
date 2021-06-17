@@ -1,9 +1,16 @@
 var informacion ="<h2>CLIMA</h2>"
 var map = document.getElementById("map");
 var fondo = document.getElementById("body");
+
+var txtInfo = document.getElementById("txtInfo");
+
+var txtTemperatura = document.getElementById("txtTemperatura");
+var txtHumedad = document.getElementById("txtHumedad");
+var txtPrecipitacion = document.getElementById("txtPrecipitacion");
 var txtLatitud = document.getElementById("txtLatitud");
 var txtLongitud = document.getElementById("txtLongitud");
-var txtCoordenadas = document.getElementById("coordenadas");
+var txtTimezone = document.getElementById("txtTimezone");
+
 var respuesta, clima, tiempo;
 var visualizarClima;
 var llamadasAPI = 0;
@@ -329,9 +336,9 @@ function iniciaMapa() {
     }
 
     async function moverPosicion(marker){
-
         if(sesionIniciada)
         {
+            txtInfo.innerText = "Datos climatológicos";
             llamadasAPI++;
             console.log("LLAMADAS LOCALES A API: " + llamadasAPI);
     
@@ -366,6 +373,12 @@ function iniciaMapa() {
             respuesta = await fetch(ruta);
             tiempo = await respuesta.json();
             clima = await tiempo.current.weather[0].main;
+
+            txtHumedad.innerText = "Humedad: " + await tiempo.current.humidity;
+            txtPrecipitacion.innerText = "Precipitación: " + await tiempo.minutely[0].precipitation + "%";
+            txtTimezone.innerText = "Zona horaria: " + await tiempo.timezone;
+            txtTemperatura.innerText = "Temperatura: " + await (Math.floor(parseFloat(tiempo.current.temp) - 273.15)) + "°C"
+
             console.log(clima)
     
             //Despejado
