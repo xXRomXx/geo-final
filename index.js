@@ -42,9 +42,11 @@ function login() {
     console.log("cerrado")
   }
 
-  function guardarDatos(clima){
-    db.collection("api").add({
-        veces: clima
+  function guardarDatos(data){
+    db.collection("datos").add({
+        clima: data.clima,
+        hora: data.hora,
+        temperatura: data.temperatura,
     })
     .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);

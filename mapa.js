@@ -11,13 +11,21 @@ var txtLatitud = document.getElementById("txtLatitud");
 var txtLongitud = document.getElementById("txtLongitud");
 var txtTimezone = document.getElementById("txtTimezone");
 
-var respuesta, clima, tiempo;
+var respuesta, clima, tiempo, minutos;
 var visualizarClima;
 var llamadasAPI = 0;
 var primeraVez = true;
 var sesionIniciada = false;
+var fecha;
+var calculoFecha;
+var calculo = 0;
 var fotoGuardada = "url('img/null.jpg')";
-
+var datosClimaticos ={
+    clima: "",
+    hora: "",
+    temperatura: ""
+};
+var temp = 0;
 var luz = true;
 
 var coordenadas = {
@@ -46,7 +54,7 @@ function iniciaMapa() {
 
     map = new google.maps.Map(document.getElementById("map"), propiedades);
 
-    var fecha = new Date()
+    fecha = new Date()
 
     console.log(fecha.getHours() + " horas");
 
@@ -374,13 +382,12 @@ function iniciaMapa() {
             tiempo = await respuesta.json();
             clima = await tiempo.current.weather[0].main;
 
-            txtHumedad.innerText = "Humedad: " + await tiempo.current.humidity;
-            txtPrecipitacion.innerText = "Precipitación: " + await tiempo.minutely[0].precipitation + "%";
+            txtHumedad.innerText = "Humedad: " + await tiempo.current.humidity + "%";
+            txtPrecipitacion.innerText = "Precipitación: " + await tiempo.minutely[0].precipitation + "mm";
             txtTimezone.innerText = "Zona horaria: " + await tiempo.timezone;
-            txtTemperatura.innerText = "Temperatura: " + await (Math.floor(parseFloat(tiempo.current.temp) - 273.15)) + "°C"
+            temp = await (Math.floor(parseFloat(tiempo.current.temp) - 273.15)) + "°C";
+            txtTemperatura.innerText = "Temperatura: " + temp;
 
-            console.log(clima)
-    
             //Despejado
             if (clima == "Clear"){
                 if(luz){
@@ -485,7 +492,19 @@ function iniciaMapa() {
             informacion = "<h2>"+visualizarClima+"</h2>";
     
             if(primeraVez){
-                guardarDatos(visualizarClima);
+                datosClimaticos.clima = visualizarClima;
+                datosClimaticos.temperatura = temp;
+                //calculoFecha = new Date(tiempo.current.dt * 1000).format('h:i')
+                calculoFecha = new Date(tiempo.current.dt * 1000);
+                minutos = calculoFecha.getMinutes();
+                minutos = minutos < 10 ? '0' + minutos : minutos
+                //minutos = calculoFecha.getMinutes < 10 ? '0' + calculoFecha.getMinutes() : calculoFecha.getMinutes()
+                datosClimaticos.hora = calculoFecha.getHours()+":"+minutos
+                //datosClimaticos.hora = calculoFecha;
+                console.log(datosClimaticos);
+                console.log("S/Convertir: " + minutos);
+                console.log("Convertidos: " + minutos);
+                guardarDatos(datosClimaticos);
                 primeraVez = false;
             }
             fotoGuardada = body.style.backgroundImage;
