@@ -13,25 +13,24 @@
 
 <body id="body" class="fondo">
     
-    <nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
 
-        <div class="container-fluid">
+    <div class="container-fluid">
 
-            <div class ="row align-items-center" id ="txtCargando">
-                <div class="col-sm-6">
-                    <p class="text-info bg-dark fw-bold lh-1">Cargando...</p>
-                </div>
-            </div>
-            
-            <div class="col-sm-9" style="align-content: center;">
+       <div class ="row align-items-center" id ="txtCargando">
+           <div class="col-sm-6">
+               <p class="text-info bg-dark fw-bold lh-1">Cargando...</p>
+           </div>
+       </div>
+       
+       <div style="align-content: center; display: none;" id="Logeado">
 
-                <div id="Logeado" style="display: none;">
+           <div class="col-8">
+               <div class ="row align-items-center">
 
-                    <div class ="row align-items-center">
-                        <div class="col-sm-6">
-                            <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
-                        </div>
-                    </div>
+                   <div class="col-sm-6">
+                       <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
+                   </div>
 
                     <div class="row">
                         <div class="col-sm-4">
@@ -46,35 +45,33 @@
                         </div>
                     </div>
 
-                </div>
-
-
-                <div class="container" id="noLogeado" style="align-content: center;display: none;">
-                    <div class="row">
-                    
-                        <div class="col-sm-6">
-                            <input id="txtUsuario" class="form-control me-2" style="margin-bottom: 10px;" type="text" placeholder="Usuario" aria-label="Search">
-                            <input id="txtPass" class="form-control me-2" type="password" placeholder="Contraseña" aria-label="Search">
-                        </div>
-
-                    </div>
-                </div>
-                
+               </div>
             </div>
 
-            <div class="col-sm-3">
-                <div class="col-12" style="display: none;" id="btnCerrar">
+            <div class="col-4">
+                <div class="col-12">
                         <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
                 </div>
-            
-                <div class="col-12" style="display: none; align-content: center; padding-top: 24px;" id="btnAbrir">
-                    <button class="btn btn-outline-success" onclick="login()">Iniciar Sesión</button>
-                </div>
             </div>
-            
 
+       </div>
 
-            
+       <div class="container" id="noLogeado" style="align-content: center;display: none;">
+           <div class="row">
+           
+               <div class="col-sm-6">
+                   <input id="txtUsuario" class="form-control me-2" style="margin-bottom: 10px;" type="text" placeholder="Usuario" aria-label="Search">
+                   <input id="txtPass" class="form-control me-2" type="password" placeholder="Contraseña" aria-label="Search">
+               </div>
+
+               <div class="col-sm-6" style="align-content: center; padding-top: 24px;">
+                   <button class="btn btn-outline-success" onclick="login()">Iniciar Sesión</button>
+               </div>
+
+           </div>
+       </div>
+       
+       
     </div>
 
 </nav>
