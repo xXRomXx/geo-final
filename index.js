@@ -3,6 +3,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       // User is signed in.
   
       //var user = firebase.auth().currentUser;
+      document.getElementById("txtCargando").style.display = "none";
+      document.getElementById("btnAbrir").style.display = "none";
+      document.getElementById("btnCerrar").style.display = "block";
       document.getElementById("mapa").style.display = "block";
       document.getElementById("Logeado").style.display = "block";
       document.getElementById("noLogeado").style.display = "none";
@@ -11,7 +14,9 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     } else {
       // No user is signed in.
-  
+      document.getElementById("txtCargando").style.display = "none";
+      document.getElementById("btnCerrar").style.display = "none";
+      document.getElementById("btnAbrir").style.display = "block";
       document.getElementById("mapa").style.display = "none";
       document.getElementById("Logeado").style.display = "none";
       document.getElementById("noLogeado").style.display = "block";

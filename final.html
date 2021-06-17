@@ -14,53 +14,70 @@
 <body id="body" class="fondo">
     
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid" id="Logeado" style="align-content: center;">
-            
-            <div class ="row align-items-center">
+
+        <div class="container-fluid">
+
+            <div class ="row align-items-center" id ="txtCargando">
                 <div class="col-sm-6">
-                    <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
+                    <p class="text-info bg-dark fw-bold lh-1">Cargando...</p>
                 </div>
             </div>
             
-            
-            <div class ="row align-items-center">
-                <div class="col-sm-6">
-                    <p class="text-light lh-1" id ="txtTemperatura"></p>
-                    <p class="text-light lh-1" id ="txtHumedad"></p>
-                    <p class="text-light lh-1" id ="txtPrecipitacion"></p>
+            <div class="col-sm-9" style="align-content: center;">
+
+                <div id="Logeado" style="display: none;">
+
+                    <div class ="row align-items-center">
+                        <div class="col-sm-6">
+                            <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="text-light lh-1" id ="txtTemperatura"></p>
+                            <p class="text-light lh-1" id ="txtHumedad"></p>
+                            <p class="text-light lh-1" id ="txtPrecipitacion"></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p class="text-light lh-1" id ="txtLatitud"></p>
+                            <p class="text-light lh-1" id ="txtLongitud"></p>
+                            <p class="text-light lh-1" id ="txtTimezone"></p>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-sm-6">
-                    <p class="text-light lh-1" id ="txtLatitud"></p>
-                    <p class="text-light lh-1" id ="txtLongitud"></p>
-                    <p class="text-light lh-1" id ="txtTimezone"></p>
-                </div>
-            </div>
-
-            <div class ="row align-items-center">
-                <div class="col-sm-8" style="align-content: center; padding-top: 10px;">
-                        <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
-                </div>
-            </div>
 
 
-        </div>
+                <div class="container" id="noLogeado" style="align-content: center;display: none;">
+                    <div class="row">
+                    
+                        <div class="col-sm-6">
+                            <input id="txtUsuario" class="form-control me-2" style="margin-bottom: 10px;" type="text" placeholder="Usuario" aria-label="Search">
+                            <input id="txtPass" class="form-control me-2" type="password" placeholder="Contraseña" aria-label="Search">
+                        </div>
 
-
-        <div class="container-fluid" id="noLogeado" style="align-content: center;">
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <input id="txtUsuario" class="form-control me-2" style="margin-bottom: 10px;" type="text" placeholder="Usuario" aria-label="Search">
-                    <input id="txtPass" class="form-control me-2" type="password" placeholder="Contraseña" aria-label="Search">
-                </div>
-                <div class="col-sm-6" style="align-content: center; padding-top: 24px; margin-bottom: 25px;">
-                    <button class="btn btn-outline-success" onclick="login()">Iniciar Sesión</button>
+                    </div>
                 </div>
                 
             </div>
-        </div>
 
-      </nav>
+            <div class="col-sm-3">
+                <div class="col-12" style="display: none;" id="btnCerrar">
+                        <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            
+                <div class="col-12" style="display: none; align-content: center; padding-top: 24px;" id="btnAbrir">
+                    <button class="btn btn-outline-success" onclick="login()">Iniciar Sesión</button>
+                </div>
+            </div>
+            
+
+
+            
+    </div>
+
+</nav>
 
       
     <div class="container-fluid" id="mapa">
