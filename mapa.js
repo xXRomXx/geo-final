@@ -338,7 +338,7 @@ function iniciaMapa() {
 
         setInterval( async () => {
             moverPosicion(marker);
-        }, 10000);
+        }, 3000);
 
 
     }
