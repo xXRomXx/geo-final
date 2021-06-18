@@ -23,53 +23,45 @@
            </div>
        </div>
        
-       <div style="align-content: center; display: none;" id="Logeado">
+       <div class="container-fluid" style="align-content: center; display: none;" id="Logeado">
 
-           <div class="col-8">
-               <div class ="row align-items-center">
+            <div class ="row align-items-center">
 
-                   <div class="col-sm-6">
-                       <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
-                   </div>
-
+                <div class="row">
+                    <p class="text-info bg-dark fw-bold lh-1" id ="txtInfo">Cargando...</p>
+                </div>
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-12 col-sm-4">
                             <p class="text-light lh-1" id ="txtTemperatura"></p>
                             <p class="text-light lh-1" id ="txtHumedad"></p>
                             <p class="text-light lh-1" id ="txtPrecipitacion"></p>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-12 col-sm-4">
                             <p class="text-light lh-1" id ="txtLatitud"></p>
                             <p class="text-light lh-1" id ="txtLongitud"></p>
                             <p class="text-light lh-1" id ="txtTimezone"></p>
                         </div>
+                        <div class="col-12 col-sm-4">
+                            <button class="btn btn-outline-danger" style="width: 80%;" onclick="logout()">Cerrar Sesión</button>
+                        </div>
                     </div>
 
-               </div>
             </div>
 
-            <div class="col-4">
-                <div class="col-12">
-                        <button class="btn btn-outline-danger" onclick="logout()">Cerrar Sesión</button>
-                </div>
-            </div>
+
 
        </div>
 
        <div class="container" id="noLogeado" style="display: none;">
            <div class="row">
            
-               <div class="col-sm-6">
+               <div class="col-12 col-sm-6">
                    <input id="txtUsuario" class="form-control me-2" style="margin-bottom: 10px;" type="text" placeholder="Usuario" aria-label="Search">
                    <input id="txtPass" class="form-control me-2" type="password" placeholder="Contraseña" aria-label="Search">
                </div>
 
-               <div class="col-sm-6" style="padding-top: 24px;">
-                    <div class="col"></div>
-                    <div class="col" style="align-content: center;">
-                        <button class="btn btn-outline-success" onclick="login()">Iniciar Sesión</button>
-                    </div>
-                    <div class="col"></div>
+               <div class="col-12 col-sm-6" style="padding-top: 24px;">
+                    <button class="btn btn-outline-success" style="width: 80%;" onclick="login()">Iniciar Sesión</button>
                </div>
 
            </div>
